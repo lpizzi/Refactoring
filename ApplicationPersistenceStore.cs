@@ -103,12 +103,17 @@ namespace Glimpse.Core.Framework
 
             var request = GetByRequestId(requestId);
 
-            if (request == null || !request.TabData.ContainsKey(tabKey))
+            if (NonNullRequestContainsKey(request, tabKey))
             {
                 return null;
             }
 
             return request.TabData[tabKey];
+        }
+
+        public bool NonNullRequestContainsKey(GlimpseRequest request, string tabKey)
+        {
+            return request == null || !request.TabData.ContainsKey(tabKey);
         }
 
         /// <summary>
